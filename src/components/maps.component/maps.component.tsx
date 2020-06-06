@@ -1,17 +1,9 @@
 import React from "react";
 import logo from "./logo.svg";
-
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
+import { GoogleMap } from "@react-google-maps/api";
 
 import { styles, center2, option } from "../../interfaces/interfaces";
 import mapStyles from "./maps.styles";
-
-const libraries = ["places"];
 
 const mapContainerStyle: styles = {
   width: "100vw",
@@ -27,21 +19,16 @@ const options: option = {
 };
 
 const Map = (): JSX.Element => {
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries,
-  });
-
-  if (loadError) return <>"Error loading maps"</>;
-  if (!isLoaded) return <>"Loading Maps"</>;
-
   return (
-    <div>
+    <div className="Search">
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={8}
         center={center}
         options={options}
+        onClick={(event) => {
+          console.log(event);
+        }}
       />
     </div>
   );
